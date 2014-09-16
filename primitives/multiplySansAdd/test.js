@@ -3,6 +3,10 @@ var multiply = require('./multiplySansAdd.js');
 
 describe('multiplySansAdd', function(){
 
+  it('should be a function', function(){
+    multiply.should.be.type('function');
+  });
+
   it('should not contain +, -, *, ++ or --', function(){
 
   });

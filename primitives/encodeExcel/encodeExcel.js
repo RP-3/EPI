@@ -6,6 +6,8 @@ Column encodings can be multiple characters
 I.e., column AA refers to column 27, column AB to column 28 etc.
 
 Write a function that takes an alphabet string and returns its corresponding column number as an integer
+
+Hint: It's probably helpful to understand how the base system works. http://en.wikipedia.org/wiki/Positional_notation
 */
 
 var encodeExcel = function(string){

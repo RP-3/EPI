@@ -1,10 +1,11 @@
 /*
-Write a function, merge, that takes two linked lists (L and F), where L and F
-are two individual linked lists that are sorted in ascending order, 
-and returns a single, sorted, linked List. 
+Write a function, merge, that takes two nodes in different Linked Lists
+that are sorted in ascending order and returns a single, sorted, linked List. 
 
-Make this function exist on the prototype of the linkedList class
-you've been given
+You do not have direct access to the head of the list
+
+Make this function exist on the prototype of the node pseudoclass
+you've been given.
 
 Your solution should use O(1) additional storage: i.e., you should reuse 
 the nodes provided in the input instead of creating new ones. The only field

@@ -13,11 +13,28 @@ Hint: It's probably helpful to understand how the base system works. http://en.w
 #include <string.h>
 #include <stdio.h>
 
+#define KRED  "\x1B[31m"
+#define KGRN  "\x1B[32m"
+#define RESET "\x1B[0m"
+
 #define offset 64
 
-int implementation(char input[]);
+void test (char assertion[], int (*func)(char[]), char argument[], int expectation);
+void test (char assertion[], int (*func)(char[]), char argument[], int expectation){
 
-int implementation(char input[]){
+    int result = func(argument);
+
+    if(result == expectation){
+        printf("%s %s \u2713 %s\n", assertion, KGRN, RESET);
+    }else{
+        printf("%s %s \u2717 %s\n", assertion, KRED, RESET);
+        printf("    Expected %d to equal %d\n", result, expectation);
+    }
+}
+
+int encode_excel(char input[]);
+
+int encode_excel(char input[]){
 
     int result = 0;
     int index = strlen(input) - 1;
@@ -34,8 +51,11 @@ int implementation(char input[]){
 
 int main(){
 
-    char test[] = "AB";
-    int result = implementation(test);
-    printf("%d\n", result);
+    test("The encoded value of of A is 1", encode_excel, "A", 1);
+    test("The encoded value of of Z is 26", encode_excel, "Z", 26);
+    test("The encoded value of of AA is 27", encode_excel, "AA", 27);
+    test("The encoded value of of AB is 28", encode_excel, "AB", 28);
+    test("The encoded value of of BA is 677", encode_excel, "BA", 53);
+
     return 0;
 }

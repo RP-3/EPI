@@ -19,13 +19,13 @@ with it. If you totally crush it, do a student presentation on it.
 */
 
 function add(x, y){
-  var sum = 0, 
-      bit = 1, 
-      carryOver = 0, 
-      xint = x, 
+  var sum = 0,
+      bit = 1,
+      carryOver = 0,
+      xint = x,
       yint = y;
 
-  while(bit > 0){
+  while(bit > 0){ //repeat this 31 times (max size of JS int)
     //fetch just the bit'th bit of each int
     var xBit = xint & bit;
     var yBit = yint & bit;
@@ -50,7 +50,7 @@ function add(x, y){
 var multiplySansAdd = function(a, b){
   var result = 0, bit = 1, place = 0;
 
-  while(bit > 0){
+  while(bit > 0){ //repeat this 31 times (max size of JS int)
     //fetch the bit'th bit of a and b
     var aBit = a & bit;
 

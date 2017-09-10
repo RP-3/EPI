@@ -1,16 +1,6 @@
 var should = require('should');
 var computeParity = require('./computeParity.js');
 
-var timer = function(cb, repeats){
-  var start = process.hrtime();
-  var args = Array.prototype.slice.call(arguments, 2);
-  for(var i=0; i<repeats; i++){
-    cb.apply(null, args);
-  }
-  return process.hrtime(start);
-};
-
-
 describe('computeParity', function(){
 
   it('should be a function', function(){

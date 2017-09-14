@@ -32,31 +32,28 @@ void test (char assertion[], int (*func)(int), int l, int expectation){
 
 // implementation
 int numeric_palindrome(int input);
+
 int numeric_palindrome(int input){
 
     if(input < 0)
         return 0;
 
-    int length, left, right, msdMask;
-        
-    while(input){
-            
-        length = (int)(log10(input)) + 1;
+    int length = (int)(log10(input)) + 1;
+    int msd_mask = (int)(pow(10, length -1));
+    int left, right;
 
-        if(length == 1)
-            return 1;
 
-        // the number we can divide the input by to get the left-most digit
-        msdMask = (int)pow(10, length -1);
+    for(int i=0; i<length/2; i++){
 
-        left = input / msdMask; // the left-most digit
-        right = input % 10; // the right-most digit
+        left = input / msd_mask;
+        right = input % 10;
+
         if(left != right)
-            return 0;
+        return 0;
 
-        input -= left * msdMask; // remove the left-most digit
-        input = input / 10; // remove the right-most digit
-        length -= 2;
+        input %= msd_mask;
+        input /= 10;
+        msd_mask /= 100;
     }
 
     return 1;
@@ -70,6 +67,7 @@ int main(){
     test("it returns true for 11", numeric_palindrome, 11, 1);
     test("it returns true for 121", numeric_palindrome, 121, 1);
     test("it returns true for 333", numeric_palindrome, 333, 1);
+    test("it returns true for 10101", numeric_palindrome, 10101, 1);
     test("it returns true for 2147447412", numeric_palindrome, 2147447412, 1);
 
     test("it returns false for -1", numeric_palindrome, -1, 0);

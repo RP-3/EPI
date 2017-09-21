@@ -50,11 +50,29 @@ void test(char assertion[], int (*func)(int[],  int), int a[], int size, int exp
 
 #include <stdlib.h>
 
+void swap_ints(int *a, int *b){
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
 // we could use shorts here instead of ints... 
 int deduplicate_int_array(int a[], int size);
 int deduplicate_int_array(int a[], int size){
 
-    return 0;
+    int i;
+    int j = 0;
+
+    // overwrite duplicate values
+    for(i=1; i < size; i++)
+        if(a[i] != a[j])
+            a[++j] = a[i];
+
+    // reset extra spaces to 0
+    for(i=1; i < (size - j); i++)
+        a[size - i] = 0;
+
+    return size - j;
 }
 
 
@@ -63,7 +81,7 @@ int main(){
     int t1a1[9] = {2, 3, 5, 5, 7, 11, 11, 11, 13};
     int t1expect[9] = {2, 3, 5, 7, 11, 13, 0, 0, 0};
 
-    test("0 * 0 should equal 0", deduplicate_int_array, t1a1, 9, t1expect);
+    test("It should dedupe the basic example", deduplicate_int_array, t1a1, 9, t1expect);
 
     return 0;
 }

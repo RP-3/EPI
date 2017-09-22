@@ -50,12 +50,6 @@ void test(char assertion[], int (*func)(int[],  int), int a[], int size, int exp
 
 #include <stdlib.h>
 
-void swap_ints(int *a, int *b){
-    int tmp = *a;
-    *a = *b;
-    *b = tmp;
-}
-
 // we could use shorts here instead of ints... 
 int deduplicate_int_array(int a[], int size);
 int deduplicate_int_array(int a[], int size){
